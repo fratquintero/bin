@@ -1,0 +1,55 @@
+#! /usr/bin/env python
+import json
+
+import requests
+import sys
+
+CACHE_FILE = '.word_cache'
+words = ' '.join(sys.argv[1:])
+params = {"sp": words,
+          "md": "rd",
+          "max": "1",
+          "ipa": "1"}
+
+
+def _write(content):
+    str_content = json.dumps(content)
+    with open(CACHE_FILE, 'a') as f:
+        f.write(str_content)
+        f.write('\n')
+
+
+def _read(_words):
+    try:
+        with open(CACHE_FILE, 'r') as f:
+            for line in f.readlines():
+                j_line = json.loads(line)
+                if _words == j_line[0]['word']:
+                    return j_line
+            else:
+                return "empty"
+    except:
+        return "empty"
+
+def print_out(result):
+    try:
+        pron = result[0]['tags'][1]
+        defs = result[0]['defs']
+        print(pron)
+        for definition in defs:
+            print(definition)
+    except KeyError:
+        print('No pronunciation or definition found')
+
+
+cache_res = _read(words)
+if cache_res != 'empty':
+    print('Reading from cache..')
+    print_out(cache_res)
+    exit()
+else:
+    page = requests.get("https://api.datamuse.com/words", params=params, )
+    api_res = page.json()
+    print('Reading from API...')
+    print_out(api_res)
+    _write(api_res)

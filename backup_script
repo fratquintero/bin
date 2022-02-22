@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#Author:Frat Quintero
+#Created: May 1 2021
+#Last Modified: --
+
+#Description
+
+#Creates a backup of your current directory and place the file in your $HOME
+#directory
+
+#Usage
+#backup_script
+
+clear
+current_dir=$(pwd)
+echo "Hello there ${USER}"
+echo "Backing up ALL FILES in $current_directory directory"
+
+tar -cvf "$current_dir"_backup.tar *
+
+echo "Backup completed"
+exit 0

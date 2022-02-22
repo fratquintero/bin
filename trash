@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+# Move a file to ~/.Trash to be safely removed
+# frat.quintero@gmail.com
+# last update: 11-9-2021
+
+if [ -e "$1" ]; then
+    mv $1 ~/.Trash/
+    echo "File $1 moved to Trash"
+    exit 0
+else 
+   echo "No file given or file does not exist" 
+   exit 1
+fi

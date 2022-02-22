@@ -1,0 +1,12 @@
+#! /usr/bin/env python
+import requests
+
+
+def print_out(attachment):
+    joke = attachment['attachments'][0]['fallback']
+    print(joke)
+
+
+page = requests.get("https://icanhazdadjoke.com/slack")
+api_res = page.json()
+print_out(api_res)
