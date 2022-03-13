@@ -1,0 +1,2 @@
+#!/bin/zsh
+curl dict.org/d:$1 | less

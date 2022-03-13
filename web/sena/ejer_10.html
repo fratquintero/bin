@@ -1,0 +1,81 @@
+<!DOCTYPEhtml>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ejercicio No. 10</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="box-1">
+                <h1>Programación de algoritmos en JavaScript</h1>
+                <p>Enunciado del problema</p>
+                <p>
+                Codifique en JavaScript un algoritmo que:
+                dada una matriz bidimensional de longitud 3x4
+                sume todos los elementos de cada fila, visualizando los resultados en pantalla.
+                Sume todos los elementos de cada columna y que los resultados se muestren en la pantalla.
+                </p>
+            </div>
+            <div class="box-2">   
+                <form action="index.html">
+                    <p>Ingrese los 4 números de cada fila de la matriz separados por una coma<br>
+                    Por ejemplo: 3,4,13,-2</p>
+                    <label for="txt1">Fila (1)</label>
+                    <input type="text" id="txt1" name="txt1"><br></br>
+                    <label for="txt2">Fila (2)</label>
+                    <input type="text" id="txt2" name="txt2"><br></br>
+                    <label for="txt3">Fila (3)</label>
+                    <input type="text" id="txt3" name="txt3"><br></br>
+                    <input type="button" onclick="ejercicioDiez()" value="Ejecutar" />
+                    <input type="button" onclick="showAndHide()" value="JS Code">
+                    <input type="submit" value="Regresar" />
+                </form>     
+            </div>
+            <div class="box-1">
+                <div id="sumaFilas"></div>
+                <div id="sumaColumnas"></div>
+            </div>
+            <div class = "box-3" id="js_code" style="display:none"><pre><code>
+function ejercicioDiez() {
+	// captura de datos desde el DOM
+	let filaUno = document.getElementById("txt1").value;
+    let filaDos = document.getElementById("txt2").value;
+    let filaTres = document.getElementById("txt3").value;
+	// inicialización de variables
+	let vectorSumaFilas = [];
+	let vectorSumaColumnas = [];
+	// creación de los vectores 
+	const vectorFilaUno = filaUno.split(',');
+	const vectorFilaDos = filaDos.split(',');
+	const vectorFilaTres = filaTres.split(',');
+	// creación de la matriz 3 x 4
+	const matriz = [vectorFilaUno, vectorFilaDos, vectorFilaTres];
+	// doble loop for para sumar filas
+	for (let i=0; i<3; i++){
+		let suma = 0;
+		for (let j=0; j<4; j++) {
+			suma = suma + parseInt(matriz[i][j]);		
+		}
+		vectorSumaFilas[i] = suma;
+	}
+	// doble loop suma columnas
+	for (let i=0; i<4; i++){
+		let suma = 0;
+		for (let j=0; j<3; j++) {
+			suma = suma + parseInt(matriz[j][i]);	
+		}
+		vectorSumaColumnas[i] = suma;
+	}
+
+	document.getElementById("sumaFilas").innerHTML ="Vector con suma de elementos en cada fila " + "["+vectorSumaFilas+"]";
+	document.getElementById("sumaColumnas").innerHTML ="Vector con suma de elementos en cada columna " + "["+vectorSumaColumnas+"]";
+}
+          </code></pre></div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>

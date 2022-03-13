@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# whatis.sh
+# Find the meaning in the free online dictionary of computing
+# w3m browsing website at foldoc.org
+# frat.quintero@gmail.com
+# Sat 12 Mar 2022 
+
+set -e;
+[ -e /bin/w3m ] && \
+[ ! -z $1 ] && w3m foldoc.org/$1 || echo "write: $ whatis [word]; check w3m is installed";
+

@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ejercicio No. 4</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="box-1">
+                <h1>Programación de algoritmos en JavaScript</h1>
+                <p>Enunciado del problema</p>
+                <p>
+                Codifique en JavaScript un algoritmo que presenta en pantalla todas las potencias enteras de 2 
+                que sean menores o iguales que 100 (usar ciclos). Realizar la traza para las primeras cinco 
+                iteraciones
+                </p>
+            </div>
+            <div class="box-2">   
+                <form action="index.html">
+                    <input type="button" onclick="ejercicioCuatro()" value="Ejecutar" />
+                    <input type="button" onclick="showAndHide()" value="JS Code">
+                    <input type="submit" value="Regresar" />
+                </form>     
+            </div>
+            <div class="box-1">
+                <div id="result"></div>
+            </div>
+            <div class = "box-3" id="js_code" style="display:none"><pre><code>
+function ejercicioCuatro() {
+      let contador = 0;
+      let num = 2, pot = "";
+      while (true) {
+            num = 2**contador;
+            pot += num + ", ";
+            if (num >= 100) break;
+            document.getElementById("result").innerHTML =pot;
+            contador++;
+      }
+}
+            </code></pre></div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
