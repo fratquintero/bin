@@ -1,7 +1,35 @@
-#! /usr/bin/zsh
+#!/bin/sh
+# /usr/bin/i3exit
 
-var1=32
-var2=3
-var3=`expr $var1 + $var2`
+# with openrc use loginctl
+[ "$(cat /proc/1/comm)" = "systemd" ] && logind=systemctl || logind=loginctl
 
-echo The sum of $var1 and $var2 is $var3
+case "$1" in
+    lock)
+        blurlock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    switch_user)
+        dm-tool switch-to-greeter
+        ;;
+    suspend)
+        blurlock && $logind suspend
+        ;;
+    hibernate)
+        blurlock && $logind hibernate
+        ;;
+    reboot)
+        $logind reboot
+        ;;
+    shutdown)
+        $logind poweroff
+        ;;
+    *)
+        echo "== ! i3exit: missing or invalid argument ! =="
+        echo "Try again with: lock | logout | switch_user | suspend | hibernate | reboot | shutdown"
+        exit 2
+esac
+
+exit 0
