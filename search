@@ -1,0 +1,10 @@
+#!/bin/bash
+# frat.quintero@gmail.com
+
+# Sun 20 Mar 2022
+# Using <locate> command to locate the exact name of a file
+
+filename='\"$1"';
+echo $filename;
+locate -b filename;
+exit

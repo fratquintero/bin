@@ -1,0 +1,16 @@
+#!/bin/zsh 
+#A list of executable files in PATH
+#frat.quintero@gmail.com
+#Mon 28 Mar 2022
+
+# creates a sorted file (bins.txt) with all the x files in PATH environment variable
+
+outfile=bins.txt
+
+for dir in $(tr ':' ' ' <<<$PATH); do
+	cd $dir
+	for file in *; do
+		[[ -x $file && ! -d $file ]] && print $file
+	done
+done |& sort > $outfile
+

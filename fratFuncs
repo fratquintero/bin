@@ -1,0 +1,34 @@
+#!/bin/env zsh 
+#fratquintero@gmail.com
+
+# enumerate for looping through indexes
+#April 06 of 2022
+enumerate(){ 
+	typeset -a enum
+	# for debugging
+	# print $@ $#
+	args=$# #amount of arguments passed
+	for ((i=1; i<=$args; i++));do
+		enum+=($i $1)
+		shift # cmd for shifting arguments
+	done
+	print $enum
+}
+
+# wttr for weather forecast
+#April 06 of 2022
+wttr() {
+	local location=$1
+	curl "wttr.in/$location"
+}
+
+# factors for getting factors of a given number (dah!)
+#April 08 of 2022
+factors() {
+	print "Find factors of a number $1"
+	! [[ $1 =~ ^[0-9]+$ ]] && print "Not a number, Ordys! " || {
+		factors=($(factor $1))
+	print "Factor numbers of $1 are"
+	print -l $factors[2,-1]; [[ $#factors == 2 ]] && print 'WOW! We just found a prime number!'
+	print "**Programm used zsh factor function. Coded by fratquintero**"
+}}

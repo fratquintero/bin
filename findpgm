@@ -1,0 +1,11 @@
+#!/bin/zsh 
+#frat.quintero@gmail.com
+
+#Tue 29 Mar 2022 
+#Look for execs in bin.txt (<- sh_filelist)
+
+sh_fileslist
+grep $1 bins.txt | column
+rm bins.txt
+
+
